@@ -1,0 +1,14 @@
+[project]
+name = "artist-selector"
+description = "A useful comfyui node named LoadArtistTag for selecting artist tags, including 1000+ single-artist tags and 300 mixed-artists tags."
+version = "1.0.0"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/ReBeating/ComfyUI-Artist-Selector"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-Artist-Selector"
+Icon = ""
