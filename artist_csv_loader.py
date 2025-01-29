@@ -3,6 +3,7 @@ import re
 import folder_paths
 import pandas as pd
 from random import choice
+import random
 
 class ArtistLoader:
     @staticmethod
@@ -33,7 +34,8 @@ class ArtistLoader:
         cls.single_artist_list, cls.mixed_artists_list = cls.load_artists_csv(single_artists_path, mixed_artists_path)
         return {
             "required": {
-                "mode": ("INT", {"default": 0, "min": -1, "max": 2, "tooltip": "-1: random choose, 0: don't use 1: single artist, 2: mixed artists"}),
+                "mode": (['random', 'random_single', 'random_mixed', 'none', 'single', 'mixed'], {"default": 'none'}),
+                "seed": ("INT", {"default": 0}),
             },
             "optional": {
                 "single_artist": (cls.single_artist_list, {"default": ""}),
@@ -46,14 +48,20 @@ class ArtistLoader:
     FUNCTION = "execute"
     CATEGORY = "ArtistSelector"   
 
-    def execute(self, mode, single_artist, mixed_artists):
+    def execute(self, mode, single_artist, mixed_artists, seed):
         tags = ''
-        if mode == -1:
-            merged_list = self.single_artist_list + self.mixed_artists_list
-            tags = choice(merged_list)
-        elif mode == 1:
+        if mode == 'random':
+            random.seed(seed)
+            tags = choice(self.single_artist_list + self.mixed_artists_list)
+        elif mode == 'random_single':
+            random.seed(seed)
+            tags = choice(self.single_artist_list)
+        elif mode == 'random_mixed':
+            random.seed(seed)
+            tags = choice(self.mixed_artists_list)
+        elif mode == 'single':
             tags = single_artist
-        elif mode == 2:
+        elif mode == 'mixed':
             tags = mixed_artists
         
         return (tags,)
