@@ -29,8 +29,8 @@ class ArtistLoader:
         
     @classmethod
     def INPUT_TYPES(cls):
-        single_artists_path = os.path.join(folder_paths.base_path, "custom_nodes\\ComfyUI-Artist-Selector\\CSV\\1000SingleArtist.csv")
-        mixed_artists_path = os.path.join(folder_paths.base_path, "custom_nodes\\ComfyUI-Artist-Selector\\CSV\\300MixedArtists.csv")
+        single_artists_path = os.path.join(folder_paths.base_path, "custom_nodes/ComfyUI-Artist-Selector/CSV/1000SingleArtist.csv")
+        mixed_artists_path = os.path.join(folder_paths.base_path, "custom_nodes/ComfyUI-Artist-Selector/CSV/300MixedArtists.csv")
         cls.single_artist_list, cls.mixed_artists_list = cls.load_artists_csv(single_artists_path, mixed_artists_path)
         return {
             "required": {
